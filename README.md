@@ -4,7 +4,7 @@ Aplicación desarrollada en Angular que consume la API pública de Rick and Mort
 
 ---
 
-# 🚀 Tecnologías Utilizadas
+#  Tecnologías Utilizadas
 
 - Angular
 - TypeScript
@@ -16,7 +16,7 @@ Aplicación desarrollada en Angular que consume la API pública de Rick and Mort
 
 ---
 
-# 🧱 Arquitectura del Proyecto
+#  Arquitectura del Proyecto
 
 El proyecto sigue una separación clara de responsabilidades:
 
@@ -29,7 +29,7 @@ El proyecto sigue una separación clara de responsabilidades:
 
 ---
 
-# 📦 Estructura del Proyecto
+#  Estructura del Proyecto
 
 src/
 
@@ -87,7 +87,7 @@ src/
 
 ---
 
-# 🌐 API Utilizada
+#  API Utilizada
 
 Rick and Morty API
 
@@ -101,7 +101,7 @@ Endpoints utilizados:
 
 ---
 
-# 📋 Funcionalidades Implementadas
+#  Funcionalidades Implementadas
 
 ✔ Listado de personajes  
 ✔ Listado de episodios  
@@ -117,7 +117,7 @@ Endpoints utilizados:
 
 ---
 
-# 🎨 UI / UX
+#  UI / UX
 
 La interfaz fue diseñada utilizando Angular Material para mantener consistencia visual y mejorar la experiencia de usuario.
 
@@ -132,7 +132,7 @@ Componentes utilizados:
 
 ---
 
-# 🔄 Manejo de Estado
+#  Manejo de Estado
 
 El estado de la aplicación se maneja mediante:
 
@@ -144,27 +144,27 @@ No se utilizó NgRx debido a que el volumen de estado es reducido y puede maneja
 
 ---
 
-# ⚙️ Instalación y Ejecución
+#  Instalación y Ejecución
 
-## 1️⃣ Instalar dependencias
+## 1️ Instalar dependencias
 
 npm install
 
 ---
 
-## 2️⃣ Ejecutar proyecto
+## 2️ Ejecutar proyecto
 
 ng serve
 
 ---
 
-## 3️⃣ Abrir en navegador
+## 3️ Abrir en navegador
 
 http://localhost:4200
 
 ---
 
-# 📊 Paginación
+#  Paginación
 
 Cada módulo implementa paginación local.
 
@@ -184,7 +184,7 @@ Aplicado en:
 
 ---
 
-# 🧪 Testing (Deseable)
+#  Testing (Deseable)
 
 Se recomienda agregar:
 
@@ -197,7 +197,7 @@ character.service.spec.ts
 
 ---
 
-# ⭐ Bonus Implementados
+#  Bonus Implementados
 
 ✔ Standalone Components  
 ✔ Angular Material  
@@ -208,7 +208,7 @@ character.service.spec.ts
 
 ---
 
-# ⭐ Bonus Recomendados (Pendiente)
+#  Bonus Recomendados (Pendiente)
 
 - Loading Spinner
 - Manejo global de errores (Interceptor)
@@ -219,7 +219,7 @@ character.service.spec.ts
 
 ---
 
-# 📌 Decisiones Técnicas
+#  Decisiones Técnicas
 
 Se utilizaron Standalone Components para simplificar la modularización del proyecto.
 
@@ -231,6 +231,6 @@ Se priorizó una arquitectura limpia y mantenible siguiendo buenas prácticas An
 
 ---
 
-# 👨‍💻 Autor
+#  Autor
 
 Simón Pereira Vigouroux
