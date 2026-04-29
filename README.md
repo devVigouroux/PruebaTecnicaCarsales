@@ -103,17 +103,17 @@ Endpoints utilizados:
 
 #  Funcionalidades Implementadas
 
-✔ Listado de personajes  
-✔ Listado de episodios  
-✔ Listado de ubicaciones  
-✔ Navegación lateral (Sidebar)  
-✔ Página de inicio (Home Dashboard)  
-✔ Paginación local  
-✔ Diseño con Angular Material  
-✔ Layout profesional (Header + Sidebar + Footer)  
-✔ Tipado fuerte con TypeScript  
-✔ Manejo de Observables con RxJS  
-✔ Separación clara de responsabilidades  
+Listado de personajes  
+Listado de episodios  
+Listado de ubicaciones  
+Navegación lateral (Sidebar)  
+Página de inicio (Home Dashboard)  
+Paginación local  
+Diseño con Angular Material  
+Layout profesional (Header + Sidebar + Footer)  
+Tipado fuerte con TypeScript  
+Manejo de Observables con RxJS  
+Separación clara de responsabilidades  
 
 ---
 
@@ -184,7 +184,7 @@ Aplicado en:
 
 ---
 
-#  Testing (Deseable)
+#  Testing (Deseable):  No se alcanso a realizar
 
 Se recomienda agregar:
 
