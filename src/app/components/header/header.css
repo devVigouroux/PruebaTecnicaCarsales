@@ -1,0 +1,21 @@
+:host{
+    display:flex;
+    align-items: center;
+    height: 60px;
+    /*background-color: #32437d;*/
+    background-color: #111827;
+    grid-area: header;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    padding-left: calc(var(--sidebar-width) + 20px);
+}
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.user {
+  font-size: 14px;
+  opacity: 0.8;
+}

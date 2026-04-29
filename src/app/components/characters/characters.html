@@ -1,0 +1,52 @@
+<h2>Personajes Rick and Morty</h2>
+
+<p>Total cargados: {{ characters.length }}</p>
+<div class="loading" *ngIf="isLoading">
+
+  <mat-spinner diameter="50"></mat-spinner>
+
+  <p>Cargando personajes...</p>
+
+</div>
+
+<div class="error" *ngIf="errorMessage">
+
+  {{ errorMessage }}
+
+</div>
+
+<div class="contenedor" *ngIf="!isLoading && !errorMessage">
+  <mat-card class="tarjeta" *ngFor="let character of characters ">
+
+    <mat-card-header>
+      <div mat-card-avatar>
+        <img [src]="character.image" class="circular" />
+      </div>
+
+      <mat-card-title>
+        {{ character.name }}
+      </mat-card-title>
+
+      <mat-card-subtitle>
+        {{ character.status }} - {{ character.species }}
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <p><b>Género:</b> {{ character.gender }}</p>
+      <p><b>Estado:</b> {{ character.status }}</p>
+      <p><b>Especie:</b> {{ character.species }}</p>
+    </mat-card-content>
+
+  </mat-card>
+</div>
+
+<div class="paginador">
+  <mat-paginator
+    [length]="totalCharacters"
+    [pageSize]="pageSize"
+    [pageIndex]="currentPage"
+    [hidePageSize]="true"
+    (page)="onPageChange($event)">
+  </mat-paginator>
+</div>

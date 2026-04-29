@@ -1,0 +1,42 @@
+/*:host{
+    display:block;
+    background-color: rgb(226, 43, 43);
+    grid-area: sidebar;
+    position: fixed;
+    height: 100%;
+    width: var(--sidebar-width);
+}*/
+
+:host {
+  display: block;
+  background-color: #1f2937;
+  grid-area: sidebar;
+  position: fixed;
+  height: 100%;
+  width: var(--sidebar-width);
+  color: white;
+}
+
+.sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px 12px;
+}
+
+.sidebar-menu h3 {
+  font-size: 16px;
+  margin-bottom: 16px;
+}
+
+.sidebar-menu a {
+  color: white;
+  text-decoration: none;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.sidebar-menu a:hover,
+.sidebar-menu a.active {
+  background-color: rgba(255, 255, 255, 0.18);
+}

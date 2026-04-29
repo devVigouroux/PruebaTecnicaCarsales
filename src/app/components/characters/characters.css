@@ -1,0 +1,112 @@
+/* contenedor en grilla */
+
+.contenedor {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(260px, 1fr));
+
+  gap: 20px;
+
+  padding: 20px;
+
+  width: 100%;
+
+  box-sizing: border-box;
+}
+
+/* tarjeta */
+
+.tarjeta {
+
+  width: 100%;
+
+  max-width: 320px;
+
+  border-radius: 12px;
+
+}
+
+/* avatar redondo */
+
+.circular {
+
+  width: 40px;
+  height: 40px;
+
+  border-radius: 50%;
+
+  object-fit: cover;
+
+}
+
+/* paginador */
+
+.paginador {
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  width: 100%;
+
+  margin-top: 25px;
+
+}
+
+/* ========================= */
+/* TABLET */
+/* ========================= */
+
+@media (max-width: 1024px) {
+
+  .contenedor {
+
+    grid-template-columns:
+      repeat(auto-fit, minmax(240px, 1fr));
+
+    padding: 16px;
+
+  }
+
+}
+
+/* ========================= */
+/* CELULAR */
+/* ========================= */
+
+@media (max-width: 768px) {
+
+  .contenedor {
+
+    grid-template-columns: 1fr;
+
+    padding: 12px;
+
+    gap: 16px;
+
+  }
+
+  .tarjeta {
+
+    max-width: 100%;
+
+  }
+
+}
+
+/* ========================= */
+/* CELULAR PEQUEÑO */
+/* ========================= */
+
+@media (max-width: 480px) {
+
+  .contenedor {
+
+    padding: 8px;
+
+  }
+
+}

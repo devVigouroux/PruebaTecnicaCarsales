@@ -1,0 +1,56 @@
+/* contenedor en grilla */
+
+.contenedor {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 20px;
+  justify-items: center;
+}
+
+/* tarjeta */
+
+.tarjeta {
+  width: 100%;
+  max-width: 320px;
+  border-radius: 12px;
+}
+
+/* avatar redondo */
+
+.circular {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+/* paginador */
+
+.paginador {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 25px;
+}
+
+/* tablet */
+
+@media (max-width: 1024px) {
+  .contenedor {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* celular */
+
+@media (max-width: 600px) {
+  .contenedor {
+    grid-template-columns: 1fr;
+    padding: 12px;
+  }
+
+  .tarjeta {
+    max-width: 100%;
+  }
+}

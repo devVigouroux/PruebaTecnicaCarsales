@@ -1,0 +1,65 @@
+<h2>Ubicaciones Rick and Morty</h2>
+
+<p>Total cargadas: {{ locations.length }}</p>
+<div class="loading" *ngIf="isLoading">
+
+  <mat-spinner diameter="50"></mat-spinner>
+
+  <p>Cargando ubicaciones...</p>
+
+</div>
+
+<div class="error" *ngIf="errorMessage">
+
+  {{ errorMessage }}
+
+</div>
+
+<div class="contenedor" *ngIf="!isLoading && !errorMessage">
+
+  <mat-card
+    class="tarjeta"
+    *ngFor="let location of locations"
+  >
+
+    <mat-card-header>
+
+      <mat-card-title>
+        {{ location.name }}
+      </mat-card-title>
+
+      <mat-card-subtitle>
+        {{ location.type }}
+      </mat-card-subtitle>
+
+    </mat-card-header>
+
+    <mat-card-content>
+
+      <p>
+        <b>Dimensión:</b>
+        {{ location.dimension }}
+      </p>
+
+      <p>
+        <b>Residentes:</b>
+        {{ location.residents.length }}
+      </p>
+
+    </mat-card-content>
+
+  </mat-card>
+
+</div>
+
+<div class="paginador">
+
+  <mat-paginator
+    [length]="totalLocations"
+    [pageSize]="pageSize"
+    [pageIndex]="currentPage"
+    [hidePageSize]="true"
+    (page)="onPageChange($event)">
+  </mat-paginator>
+
+</div>

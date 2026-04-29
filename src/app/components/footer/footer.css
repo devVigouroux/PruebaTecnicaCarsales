@@ -1,0 +1,27 @@
+/**:host{
+    display:block;
+    background-color: blueviolet;
+    grid-area: footer;
+    padding-left: calc(var(--sidebar-width) + 20px);
+}*/
+
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  grid-area: footer;
+
+  height: 45px;
+
+  background: linear-gradient(
+    90deg,
+    #6366f1,
+    #8b5cf6
+  );
+
+  color: white;
+
+  font-size: 14px;
+  font-weight: 500;
+}
