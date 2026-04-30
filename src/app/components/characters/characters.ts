@@ -72,7 +72,7 @@ export class Characters implements OnInit {
     const end = start + this.pageSize;
     this.characters = this.allCharacters.slice(start, end);
   }
-  onPageChange(event: any): void {
+  onPageChange(event: PageEvent): void {
 
     this.currentPage = event.pageIndex;
     this.updatePage();

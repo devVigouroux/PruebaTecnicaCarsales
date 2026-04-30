@@ -1,20 +1,21 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
+import { environment } from '../../environments/environment';
 import { EpisodeResponse } from '../models/episode';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EpisodeService {
-  private apiUrl = 'https://rickandmortyapi.com/api/episode';
+
+  private readonly apiUrl = `${environment.apiUrl}/episode`;
 
   constructor(private http: HttpClient) {}
 
-    getEpisodes(page: number = 1) {
+    getEpisodes(page: number = 1): Observable<EpisodeResponse> {
     return this.http.get<EpisodeResponse>(
-      `https://rickandmortyapi.com/api/episode?page=${page}`
+      `${this.apiUrl}?page=${page}`
     );
   }
 }

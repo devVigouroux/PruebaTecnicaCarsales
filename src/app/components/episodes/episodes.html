@@ -1,6 +1,9 @@
 <h2>Episodios Rick and Morty</h2>
 
 <p>Total cargados: {{ episodes.length }}</p>
+
+<!-- LOADING -->
+
 <div class="loading" *ngIf="isLoading">
 
   <mat-spinner diameter="50"></mat-spinner>
@@ -9,31 +12,120 @@
 
 </div>
 
+
+<!-- ERROR -->
+
 <div class="error" *ngIf="errorMessage">
 
   {{ errorMessage }}
 
 </div>
 
-<div class="contenedor" *ngIf="!isLoading && !errorMessage">
-  <mat-card class="tarjeta" *ngFor="let episode of episodes">
+
+<!-- SIN RESULTADOS -->
+
+<div
+  class="sin-resultados"
+  *ngIf="!isLoading && !errorMessage && episodes.length === 0">
+
+  <div class="sin-resultados-contenido">
+
+    <mat-icon class="sin-resultados-icon">
+      search_off
+    </mat-icon>
+
+    <div>
+
+      <h3>No se encontraron episodios</h3>
+
+      <p>
+        No hay episodios disponibles para mostrar.
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- GRID -->
+
+<div
+  class="contenedor"
+  *ngIf="!isLoading && !errorMessage && episodes.length > 0">
+
+  <mat-card
+    class="tarjeta"
+    *ngFor="let episode of episodes">
+
     <mat-card-header>
-      <mat-card-title>{{ episode.name }}</mat-card-title>
-      <mat-card-subtitle>{{ episode.episode }}</mat-card-subtitle>
+
+      <mat-card-title>
+        {{ episode.name }}
+      </mat-card-title>
+
+      <mat-card-subtitle>
+        {{ episode.episode }}
+      </mat-card-subtitle>
+
     </mat-card-header>
 
     <mat-card-content>
-      <p><b>Fecha emisión:</b> {{ episode.air_date }}</p>
-      <p><b>Personajes:</b> {{ episode.characters.length }}</p>
+
+      <p>
+        <b>Fecha emisión:</b>
+        {{ episode.air_date }}
+      </p>
+
+      <p>
+        <b>Personajes:</b>
+        {{ episode.characters.length }}
+      </p>
+
     </mat-card-content>
+
+
+    <mat-card-actions>
+
+      <button
+        mat-button
+        color="primary"
+        type="button"
+        (click)="openEpisodeDetail(episode)">
+
+        Ver episodio
+
+      </button>
+
+    </mat-card-actions>
+
   </mat-card>
+
 </div>
-<div class="paginador">
+
+
+<!-- MODAL -->
+
+<app-episode-detail-modal
+  [episode]="selectedEpisode"
+  (close)="closeEpisodeDetail()">
+</app-episode-detail-modal>
+
+
+<!-- PAGINADOR -->
+
+<div
+  class="paginador"
+  *ngIf="!isLoading && !errorMessage && episodes.length > 0">
+
   <mat-paginator
     [length]="totalEpisodes"
     [pageSize]="pageSize"
     [pageIndex]="currentPage"
     [hidePageSize]="true"
     (page)="onPageChange($event)">
+
   </mat-paginator>
+
 </div>

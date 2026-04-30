@@ -1,0 +1,41 @@
+<div class="modal-backdrop" *ngIf="episode" (click)="closeModal()">
+
+  <div class="modal-content" (click)="$event.stopPropagation()">
+
+    <button class="close-button" (click)="closeModal()">×</button>
+
+    <h2>{{ episode.name }}</h2>
+
+    <p>
+      <strong>ID:</strong>
+      {{ episode.id }}
+    </p>
+
+    <p>
+      <strong>Código:</strong>
+      {{ episode.episode }}
+    </p>
+
+    <p>
+      <strong>Fecha de estreno:</strong>
+      {{ episode.air_date }}
+    </p>
+
+    <p>
+      <strong>Personajes:</strong>
+      {{ episode.characters.length }}
+    </p>
+
+    <p>
+      <strong>URL:</strong>
+      <a 
+        [href]="episode.url" 
+        target="_blank"
+      >
+        Ver en API
+      </a>
+    </p>
+
+  </div>
+
+</div>

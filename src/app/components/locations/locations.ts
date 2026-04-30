@@ -93,7 +93,7 @@ export class Locations implements OnInit {
 
   }
 
-  onPageChange(event: any): void {
+  onPageChange(event: PageEvent): void {
 
     this.currentPage =
       event.pageIndex;

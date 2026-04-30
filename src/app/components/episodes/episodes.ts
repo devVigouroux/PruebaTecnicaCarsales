@@ -5,12 +5,17 @@ import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { Episode, EpisodeResponse } from '../../models/episode';
 import { EpisodeService } from '../../services/episodes';
 import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { EpisodeDetailModalComponent } from '../episode-detail-modal/episode-detail-modal';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+
 import { delay } from 'rxjs';
 
 @Component({
   selector: 'app-episodes',
   standalone: true,
-  imports: [CommonModule, MatCardModule,MatPaginatorModule,MatProgressSpinnerModule],
+  imports: [CommonModule, MatCardModule,MatPaginatorModule,
+    MatProgressSpinnerModule,EpisodeDetailModalComponent,MatButtonModule,MatIconModule],
   templateUrl: './episodes.html',
   styleUrl: './episodes.css'
 })
@@ -34,6 +39,9 @@ export class Episodes implements OnInit {
 loadEpisodes(): void {
   this.isLoading = true;
   this.errorMessage = '';
+
+  this.cdr.detectChanges(); // 👈 agrega esto
+
   this.episodeService.getEpisodes().pipe(delay(800)).subscribe({
     next: (data: EpisodeResponse) => {
       this.allEpisodes = data.results;
@@ -41,6 +49,7 @@ loadEpisodes(): void {
 
       this.currentPage = 0;
       this.updatePage();
+
       this.isLoading = false;
       this.cdr.detectChanges();
     },
@@ -58,13 +67,26 @@ loadEpisodes(): void {
     const end = start + this.pageSize;
 
     this.episodes = this.allEpisodes.slice(start, end);
+    //this.episodes= [];
+    //this.isLoading=false;
 
     this.cdr.detectChanges();
   }
 
-  onPageChange(event: any): void {
+  onPageChange(event: PageEvent): void {
     this.currentPage = event.pageIndex;
     this.updatePage();
+  }
+
+
+  selectedEpisode: Episode | null = null;
+
+  openEpisodeDetail(episode: Episode): void {
+    this.selectedEpisode = episode;
+  }
+
+  closeEpisodeDetail(): void {
+    this.selectedEpisode = null;
   }
 
 }
