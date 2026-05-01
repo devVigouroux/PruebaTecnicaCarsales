@@ -1,236 +1,113 @@
-# Rick and Morty Dashboard — Frontend
+# Prueba Técnica Carsales — Frontend Rick and Morty
 
-Aplicación desarrollada en Angular que consume la API pública de Rick and Morty para visualizar información de personajes, episodios y ubicaciones mediante una interfaz moderna y organizada.
+Aplicación frontend desarrollada en Angular para consultar información desde la API pública de Rick and Morty. La funcionalidad principal del proyecto está centrada en la consulta de episodios, permitiendo listar episodios, filtrar por temporada, paginar resultados, visualizar estados de carga, manejar errores, mostrar un estado explícito de “sin resultados” y abrir un modal de detalle con información adicional del episodio seleccionado. Las secciones de personajes y ubicaciones se incluyen como funcionalidades complementarias, pero no reemplazan el flujo principal solicitado sobre episodios.
 
----
+# Prerrequisitos
 
-#  Tecnologías Utilizadas
+Antes de ejecutar el proyecto se debe contar con Node.js, npm y Angular CLI instalados.
 
-- Angular
-- TypeScript
-- Angular Material
-- RxJS
-- HttpClient
-- CSS Grid / Flexbox
-- Rick and Morty API
+Para verificar las versiones disponibles se pueden ejecutar los siguientes comandos:
 
----
+node --version  
+npm --version  
+ng version  
 
-#  Arquitectura del Proyecto
+# Tecnologías utilizadas
 
-El proyecto sigue una separación clara de responsabilidades:
+El proyecto utiliza Angular con componentes standalone, TypeScript, Angular Material para la interfaz visual, RxJS para manejo de flujos reactivos, HttpClient para consumo de servicios HTTP, Angular Router para navegación entre vistas, interceptores HTTP para manejo centralizado de errores, modelos tipados en TypeScript, pruebas unitarias utilizando Vitest y estilos CSS responsive adaptados para distintos tamaños de pantalla.
 
-- Components → Componentes reutilizables
-- Services → Consumo de API
-- Models → Interfaces TypeScript
-- Pages → Páginas principales
-- Layout → Header, Sidebar y Footer
-- Routing → Configuración de navegación
+# Arquitectura del proyecto
 
----
+La aplicación se organiza por responsabilidad funcional, manteniendo consistencia con los nombres reales del código. Dentro de la carpeta src/app se encuentra components, que contiene las vistas visuales como episodes, episode-detail-modal, characters, locations, sidebar, header y footer. Dentro de services se encuentra el archivo episodes.ts encargado de consumir la API de episodios. Dentro de models se encuentra episode.ts, donde se definen las interfaces Episode y EpisodeResponse utilizadas en la aplicación. Dentro de interceptor se encuentra error-interceptor.ts, que captura errores HTTP globales. Finalmente, dentro de environments se encuentra environment.ts, donde se define la URL base de la API evitando hardcodear URLs en distintos archivos.
 
-#  Estructura del Proyecto
+# Configuración de API
 
-src/
+La URL base de la API se encuentra centralizada en el archivo src/environments/environment.ts. Esto permite mantener una configuración única del endpoint base y evita repetir direcciones completas en distintos servicios. Un ejemplo de configuración es:
 
- └── app/
+production: false  
+apiUrl: https://rickandmortyapi.com/api  
 
-     ├── components/
+Los servicios utilizan esta URL base para construir dinámicamente los endpoints específicos como /episode.
 
-     │     ├── characters/
+# Funcionalidad principal: Episodios
 
-     │     ├── episodes/
+La vista principal de la aplicación gira alrededor de los episodios. Desde esta vista se cargan episodios desde la API, se muestran en tarjetas utilizando Angular Material, se permite filtrar por temporada mediante un selector visual, se habilita la paginación de resultados y se incluye un botón llamado "Ver episodio" que permite abrir un modal con información adicional del episodio seleccionado. Cada tarjeta muestra nombre del episodio, temporada y número de episodio, fecha de emisión, cantidad de personajes y acceso al detalle.
 
-     │     ├── locations/
+# Filtro por temporada
 
-     │
+Se implementó un selector que permite filtrar episodios por temporada utilizando valores como ALL, S01, S02, S03, S04 y S05. Cuando se selecciona una temporada específica, el sistema consulta nuevamente la API utilizando el parámetro correspondiente y muestra únicamente los episodios asociados a esa temporada. Esta funcionalidad fortalece la navegación del usuario y mejora la evaluación funcional del sistema.
 
-     ├── pages/
+# Modal de detalle obligatorio
 
-     │     └── home/
+Al hacer clic en el botón "Ver episodio", se abre un modal que muestra información detallada del episodio seleccionado. Dentro del modal se visualizan el nombre del episodio, código del episodio, fecha de emisión, cantidad de personajes asociados, URL del recurso y otros datos disponibles entregados por la API. Este modal cumple con el requisito obligatorio solicitado en la consigna de la prueba técnica.
 
-     │
+# Estados visuales implementados
 
-     ├── services/
+La vista de episodios contempla distintos estados visuales que mejoran la experiencia de usuario.
 
-     │     ├── character.service.ts
+Durante la carga de información se muestra un spinner con el mensaje "Cargando episodios...".
 
-     │     ├── episodes.service.ts
+Si ocurre un error en el consumo del servicio HTTP, se muestra el mensaje "No se pudieron cargar los episodios".
 
-     │     ├── locations.service.ts
+Cuando no existen resultados disponibles, se muestra un estado explícito con el mensaje "No se encontraron episodios", evitando dejar una grilla vacía sin explicación.
 
-     │
+Cuando existen resultados, se muestran las tarjetas de episodios junto con el paginador correspondiente.
 
-     ├── models/
+# Endpoint utilizado
 
-     │     ├── character.model.ts
+La aplicación consume principalmente el endpoint público de episodios de la API Rick and Morty.
 
-     │     ├── episode.model.ts
+https://rickandmortyapi.com/api/episode
 
-     │     ├── location.model.ts
+Ejemplos de uso incluyen:
 
-     │
+/episode?page=1  
+/episode?page=1&episode=S01  
 
-     ├── layout/
+Las respuestas se tipan utilizando interfaces definidas en el archivo src/app/models/episode.ts.
 
-     │     ├── header/
+# Tipado y modelos
 
-     │     ├── sidebar/
+Las interfaces TypeScript utilizadas por la aplicación se encuentran centralizadas en la carpeta models, específicamente en el archivo episode.ts. Esto evita duplicación de tipos entre servicios y componentes, mejora la mantenibilidad del código y permite reducir el uso innecesario del tipo any.
 
-     │     ├── footer/
+# Ejecución del proyecto
 
-     │
+Para instalar dependencias y ejecutar la aplicación en ambiente local se deben ejecutar los siguientes comandos desde la raíz del proyecto:
 
-     ├── app.routes.ts
+npm install  
+ng serve  
 
-     ├── app.config.ts
-
----
-
-#  API Utilizada
-
-Rick and Morty API
-
-https://rickandmortyapi.com/api
-
-Endpoints utilizados:
-
-/character  
-/episode  
-/location  
-
----
-
-#  Funcionalidades Implementadas
-
-Listado de personajes  
-Listado de episodios  
-Listado de ubicaciones  
-Navegación lateral (Sidebar)  
-Página de inicio (Home Dashboard)  
-Paginación local  
-Diseño con Angular Material  
-Layout profesional (Header + Sidebar + Footer)  
-Tipado fuerte con TypeScript  
-Manejo de Observables con RxJS  
-Separación clara de responsabilidades  
-
----
-
-#  UI / UX
-
-La interfaz fue diseñada utilizando Angular Material para mantener consistencia visual y mejorar la experiencia de usuario.
-
-Componentes utilizados:
-
-- MatCard
-- MatPaginator
-- MatButton
-- Sidebar navegación
-- Layout con Header y Footer
-- Dashboard inicial
-
----
-
-#  Manejo de Estado
-
-El estado de la aplicación se maneja mediante:
-
-- Services Angular
-- Observables (RxJS)
-- Variables locales por componente
-
-No se utilizó NgRx debido a que el volumen de estado es reducido y puede manejarse correctamente mediante servicios y observables.
-
----
-
-#  Instalación y Ejecución
-
-## 1️ Instalar dependencias
-
-npm install
-
----
-
-## 2️ Ejecutar proyecto
-
-ng serve
-
----
-
-## 3️ Abrir en navegador
+Luego abrir en el navegador:
 
 http://localhost:4200
 
----
+# Ejecución de pruebas
 
-#  Paginación
+El proyecto incluye pruebas que validan comportamiento real del sistema, no solamente la creación de componentes.
 
-Cada módulo implementa paginación local.
+Para ejecutar las pruebas:
 
-La API retorna:
+npm test  
 
-20 registros por request
+Las pruebas implementadas cubren carga correcta de episodios, manejo de errores cuando falla el servicio, apertura y cierre del modal de detalle, validación del estado sin resultados, creación de componentes principales y funcionamiento del interceptor HTTP.
 
-El frontend divide esos registros en:
+# Funcionalidades implementadas
 
-8 registros por página
+Consulta de episodios desde la API Rick and Morty.  
+Vista principal centrada en episodios.  
+Filtro por temporada.  
+Modal de detalle obligatorio.  
+Estado de carga con spinner.  
+Manejo de errores HTTP.  
+Estado explícito de “sin resultados”.  
+Paginación de episodios.  
+Modelos TypeScript centralizados.  
+Servicios tipados sin uso innecesario de any.  
+URL base centralizada en environment.  
+Interceptor para manejo de errores HTTP.  
+Secciones adicionales para personajes y ubicaciones.  
+Pruebas unitarias y de comportamiento.
 
-Aplicado en:
-
-- Characters
-- Episodes
-- Locations
-
----
-
-#  Testing (Deseable):  No se alcanso a realizar
-
-Se recomienda agregar:
-
-- 1 test unitario para un Service
-- Validación de respuesta API
-
-Ejemplo sugerido:
-
-character.service.spec.ts
-
----
-
-#  Bonus Implementados
-
-✔ Standalone Components  
-✔ Angular Material  
-✔ Layout modular  
-✔ Routing centralizado  
-✔ UI moderna  
-✔ Paginación con Angular Material  
-
----
-
-#  Bonus Recomendados (Pendiente)
-
-- Loading Spinner
-- Manejo global de errores (Interceptor)
-- Lazy Loading
-- Cache de datos
-- Responsive avanzado
-- Animaciones Angular
-
----
-
-#  Decisiones Técnicas
-
-Se utilizaron Standalone Components para simplificar la modularización del proyecto.
-
-Angular Material fue seleccionado para acelerar el desarrollo UI y mantener consistencia visual.
-
-La paginación se implementó de manera local debido a que la API retorna 20 registros por solicitud.
-
-Se priorizó una arquitectura limpia y mantenible siguiendo buenas prácticas Angular.
-
----
-
-#  Autor
+# Autor
 
 Simón Pereira Vigouroux
