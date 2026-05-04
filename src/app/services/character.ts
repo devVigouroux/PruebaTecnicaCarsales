@@ -1,20 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '../../environments/environment';
-export interface Character {
-  id: number;
-  name: string;
-  status: string;
-  species: string;
-  gender: string;
-  image: string;
-}
 
-export interface CharacterResponse {
-  info: any;
-  results: Character[];
-}
+import { environment } from '../../environments/environment';
+import { CharacterResponse } from '../models/character';
 
 @Injectable({
   providedIn: 'root'

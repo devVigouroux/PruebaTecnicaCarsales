@@ -72,8 +72,6 @@ export class Episodes implements OnInit {
           this.cdr.detectChanges();
         },
         error: (error: unknown) => {
-          console.error(error);
-
           this.episodes = [];
           this.totalEpisodes = 0;
           this.errorMessage = 'No se pudieron cargar los episodios.';

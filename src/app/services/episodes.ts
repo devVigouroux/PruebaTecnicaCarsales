@@ -17,7 +17,6 @@ export class EpisodeService {
       url = `${this.apiUrl}?page=${page}&episode=${season}`;
     }
 
-    console.log('URL episodios:', url);
     return this.http.get<EpisodeResponse>(url);
   }
 }

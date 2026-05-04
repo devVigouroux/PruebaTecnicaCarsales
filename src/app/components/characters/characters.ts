@@ -3,7 +3,8 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
-import { CharacterService, Character, CharacterResponse } from '../../services/character';
+import { Character, CharacterResponse } from '../../models/character';
+import { CharacterService } from '../../services/character';
 import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { delay } from 'rxjs';
 
@@ -51,7 +52,6 @@ export class Characters implements OnInit {
           },
 
           error: (error: unknown) => {
-            console.error(error);
             
             this.errorMessage =
             typeof error==='string'

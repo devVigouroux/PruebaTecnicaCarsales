@@ -49,8 +49,6 @@ export class Locations implements OnInit {
 
         next: (data: LocationResponse) => {
 
-          console.log('Locations:', data);
-
           // llegan 20 desde API
 
           this.allLocations =
@@ -70,7 +68,6 @@ export class Locations implements OnInit {
         },
 
         error: (error: unknown) => {
-          console.error(error);
           this.errorMessage = 'No se pudieron cargar las ubicaciones.';
           this.isLoading = false;
           this.cdr.detectChanges();
